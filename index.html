@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты и Telegram-боты</title>
+<meta name="description" content="Лендинги, Telegram-боты и Python-скрипты под ключ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F1F5F9;
+    --ink: #0F1B2D;
+    --muted: #4B5B70;
+    --line: #CBD5E1;
+    --blue: #1F6FD1;
+    --blue-dark: #174F96;
+    --mint: #DDF3EA;
+    --bubble: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  header { padding: 18px 0; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 800; font-size: 1.1rem; }
+  .lang { display: flex; border: 1.5px solid var(--ink); border-radius: 8px; overflow: hidden; }
+  .lang button {
+    font: inherit; font-weight: 600; font-size: .9rem;
+    padding: 6px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+  .hero { padding: 48px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 20px 0 28px; color: var(--muted); font-size: 1.1rem; max-width: 46ch; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    background: var(--blue); color: #fff; padding: 14px 26px; border-radius: 10px;
+  }
+  .btn:hover { background: var(--blue-dark); }
+
+  .chat {
+    background: #E2EAF3; border-radius: 20px; padding: 18px;
+    display: flex; flex-direction: column; gap: 10px; max-width: 380px; justify-self: end; width: 100%;
+  }
+  .msg { padding: 10px 14px; border-radius: 16px; max-width: 85%; font-size: .95rem; }
+  .msg.bot { background: var(--bubble); border-bottom-left-radius: 4px; align-self: flex-start; }
+  .msg.me { background: var(--mint); border-bottom-right-radius: 4px; align-self: flex-end; }
+  .keys { display: flex; gap: 8px; }
+  .keys span {
+    flex: 1; text-align: center; background: #fff; border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px; font-size: .9rem; font-weight: 600;
+  }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 28px; letter-spacing: -0.01em; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .cols h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .cols p { color: var(--muted); }
+
+  ol { list-style: none; padding: 0; display: grid; gap: 22px; max-width: 640px; counter-reset: s; }
+  ol li { counter-increment: s; padding-left: 52px; position: relative; }
+  ol li::before {
+    content: counter(s); position: absolute; left: 0; top: 0;
+    width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: #fff;
+    display: grid; place-items: center; font-weight: 800;
+  }
+  ol strong { display: block; }
+  ol span { color: var(--muted); }
+
+  .price { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); max-width: 640px; }
+  .price b { white-space: nowrap; }
+  .note { color: var(--muted); font-size: .9rem; margin-top: 16px; }
+
+  .contact { text-align: center; }
+  .contact p { color: var(--muted); margin-bottom: 24px; }
+  footer { padding: 28px 0; color: var(--muted); font-size: .9rem; text-align: center; border-top: 1px solid var(--line); }
+
+  @media (max-width: 800px) {
+    .hero .wrap, .cols { grid-template-columns: 1fr; }
+    .chat { justify-self: start; }
+    .hero { padding-bottom: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Исломов Мухаммад</div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-lang="uz" aria-pressed="false">UZ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1 data-ru="Сайты и Telegram-боты для вашего бизнеса" data-uz="Biznesingiz uchun saytlar va Telegram-botlar"></h1>
+        <p data-ru="Делаю лендинги и ботов под ключ: от идеи до запуска. Срок — от 2 дней." data-uz="Landing page va botlarni boshidan oxirigacha tayyorlayman. Muddat — 2 kundan."></p>
+        <a class="btn" href="https://t.me/islomog" data-ru="Написать в Telegram" data-uz="Telegram'da yozish"></a>
+      </div>
+      <div class="chat" aria-hidden="true">
+        <div class="msg me">/start</div>
+        <div class="msg bot" data-ru="Здравствуйте! Что вас интересует?" data-uz="Assalomu alaykum! Nima qiziq?"></div>
+        <div class="keys">
+          <span data-ru="Услуги" data-uz="Xizmatlar"></span>
+          <span data-ru="Цены" data-uz="Narxlar"></span>
+        </div>
+        <div class="msg me" data-ru="Цены" data-uz="Narxlar"></div>
+        <div class="msg bot" data-ru="Лендинг — от 1000 ₽. Бот — от 500 ₽." data-uz="Landing page — 1000 ₽ dan. Bot — 500 ₽ dan."></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2 data-ru="Что я делаю" data-uz="Nima qilaman"></h2>
+      <div class="cols">
+        <div>
+          <h3 data-ru="Лендинг" data-uz="Landing page"></h3>
+          <p data-ru="Одностраничный сайт с адаптивным дизайном и формой заявки." data-uz="Mobil qurilmalarga moslashgan, so'rov formali bir sahifali sayt."></p>
+        </div>
+        <div>
+          <h3 data-ru="Telegram-бот" data-uz="Telegram-bot"></h3>
+          <p data-ru="Меню, кнопки, анкеты и приём заявок. Бот работает круглосуточно." data-uz="Menyu, tugmalar, anketa va buyurtma qabul qilish. Bot kechayu kunduz ishlaydi."></p>
+        </div>
+        <div>
+          <h3 data-ru="Python-скрипт" data-uz="Python skript"></h3>
+          <p data-ru="Автоматизация рутины: обработка таблиц, файлов и данных." data-uz="Kundalik ishlarni avtomatlashtirish: jadval, fayl va ma'lumotlar bilan ishlash."></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-ru="Как мы работаем" data-uz="Qanday ishlaymiz"></h2>
+      <ol>
+        <li>
+          <strong data-ru="Обсуждаем задачу" data-uz="Vazifani muhokama qilamiz"></strong>
+          <span data-ru="Вы описываете, что нужно. Я уточняю детали, называю срок и цену." data-uz="Siz nima kerakligini aytasiz. Men tafsilotlarni aniqlab, muddat va narxni aytaman."></span>
+        </li>
+        <li>
+          <strong data-ru="Делаю и показываю результат" data-uz="Tayyorlayman va natijani ko'rsataman"></strong>
+          <span data-ru="Присылаю промежуточную версию, вносим правки." data-uz="Oraliq variantni yuboraman, tuzatishlarni birga kiritamiz."></span>
+        </li>
+        <li>
+          <strong data-ru="Сдаю работу и помогаю запустить" data-uz="Ishni topshiraman va ishga tushirishga yordam beraman"></strong>
+          <span data-ru="Передаю файлы и помогаю с публикацией." data-uz="Fayllarni topshiraman va e'lon qilishda yordam beraman."></span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-ru="Цены" data-uz="Narxlar"></h2>
+      <div class="price"><span data-ru="Лендинг" data-uz="Landing page"></span><b data-ru="от 1000 ₽" data-uz="1000 ₽ dan"></b></div>
+      <div class="price"><span data-ru="Telegram-бот" data-uz="Telegram-bot"></span><b data-ru="от 500 ₽" data-uz="500 ₽ dan"></b></div>
+      <div class="price"><span data-ru="Python-скрипт" data-uz="Python skript"></span><b data-ru="от 1500 ₽" data-uz="1500 ₽ dan"></b></div>
+      <p class="note" data-ru="Точная стоимость зависит от задачи и называется после обсуждения." data-uz="Aniq narx vazifaga bog'liq va muhokamadan keyin aytiladi."></p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <h2 data-ru="Есть задача? Напишите" data-uz="Vazifa bormi? Yozing"></h2>
+      <p data-ru="Отвечаю в течение дня." data-uz="Bir kun ichida javob beraman."></p>
+      <a class="btn" href="https://t.me/islomog" data-ru="Написать в Telegram" data-uz="Telegram'da yozish"></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Мухаммад Исломов</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-ru]").forEach(function (el) {
+      el.textContent = el.getAttribute("data-" + lang);
+    });
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+    });
+    document.title = lang === "ru" ? "Сайты и Telegram-боты" : "Saytlar va Telegram-botlar";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.dataset.lang); });
+  });
+  var saved = "ru";
+  try { saved = localStorage.getItem("lang") || "ru"; } catch (e) {}
+  setLang(saved === "uz" ? "uz" : "ru");
+</script>
+</body>
+</html>
